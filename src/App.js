@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
+import TemplateLibrary from './components/TemplateLibrary';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <h2>Create Amazing Content</h2>
           <p>Templates, tools, and organization for all your content needs.</p>
         </div>
+        <TemplateLibrary />
       </main>
     </div>
   );
