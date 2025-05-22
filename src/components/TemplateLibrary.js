@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import TemplateCard from './TemplateCard';
+import ContentEditor from './ContentEditor';
 import { templates } from '../data/templates';
+import { useContent } from '../hooks/useContent';
 import './TemplateLibrary.css';
 
 const TemplateLibrary = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [showEditor, setShowEditor] = useState(false);
+  const { saveContent } = useContent();
 
   const categories = ['All', 'Blog', 'E-commerce', 'Social'];
 
@@ -13,8 +18,30 @@ const TemplateLibrary = () => {
     : templates.filter(template => template.category === selectedCategory);
 
   const handleTemplateSelect = (template) => {
-    console.log('Selected template:', template.name);
+    setSelectedTemplate(template);
+    setShowEditor(true);
   };
+
+  const handleSaveContent = (contentData) => {
+    saveContent(contentData);
+    setShowEditor(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleCancelEdit = () => {
+    setShowEditor(false);
+    setSelectedTemplate(null);
+  };
+
+  if (showEditor) {
+    return (
+      <ContentEditor
+        template={selectedTemplate}
+        onSave={handleSaveContent}
+        onCancel={handleCancelEdit}
+      />
+    );
+  }
 
   return (
     <div className="template-library">
