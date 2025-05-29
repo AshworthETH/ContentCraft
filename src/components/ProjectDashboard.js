@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContent } from '../hooks/useContent';
+import ExportModal from './ExportModal';
 import './ProjectDashboard.css';
 
 const ProjectDashboard = () => {
   const { contents } = useContent();
+  const [exportContent, setExportContent] = useState(null);
 
   const stats = {
     totalContent: contents.length,
@@ -16,6 +18,10 @@ const ProjectDashboard = () => {
   const recentContent = contents
     .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
     .slice(0, 5);
+
+  const handleExportClick = (content) => {
+    setExportContent(content);
+  };
 
   return (
     <div className="project-dashboard">
@@ -56,12 +62,25 @@ const ProjectDashboard = () => {
                 </div>
                 <div className="content-actions">
                   <button className="action-btn">Edit</button>
+                  <button
+                    className="action-btn export-btn"
+                    onClick={() => handleExportClick(content)}
+                  >
+                    Export
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {exportContent && (
+        <ExportModal
+          content={exportContent}
+          onClose={() => setExportContent(null)}
+        />
+      )}
     </div>
   );
 };
