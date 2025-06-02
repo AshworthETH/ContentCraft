@@ -80,3 +80,11 @@ export const getTemplateById = (id) => {
 export const getTemplatesByCategory = (category) => {
   return templates.filter(template => template.category === category);
 };
+
+export const getTemplatesWithUsage = () => {
+  const usage = JSON.parse(localStorage.getItem('contentcraft-template-usage') || '{}');
+  return templates.map(template => ({
+    ...template,
+    usageCount: usage[template.id] || template.usageCount
+  }));
+};

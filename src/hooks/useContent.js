@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
 export const useContent = () => {
-  const [contents, setContents] = useState([]);
+  const [contents, setContents] = useLocalStorage('contentcraft-contents', []);
 
   const saveContent = (contentData) => {
     const newContent = {
@@ -10,7 +10,18 @@ export const useContent = () => {
       updatedAt: new Date().toISOString()
     };
     setContents(prev => [...prev, newContent]);
+
+    if (contentData.templateId) {
+      updateTemplateUsage(contentData.templateId);
+    }
+
     return newContent;
+  };
+
+  const updateTemplateUsage = (templateId) => {
+    const usage = JSON.parse(localStorage.getItem('contentcraft-template-usage') || '{}');
+    usage[templateId] = (usage[templateId] || 0) + 1;
+    localStorage.setItem('contentcraft-template-usage', JSON.stringify(usage));
   };
 
   const updateContent = (id, updates) => {

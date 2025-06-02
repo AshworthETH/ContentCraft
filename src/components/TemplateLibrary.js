@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TemplateCard from './TemplateCard';
 import ContentEditor from './ContentEditor';
-import { templates } from '../data/templates';
+import { getTemplatesWithUsage } from '../data/templates';
 import { useContent } from '../hooks/useContent';
 import './TemplateLibrary.css';
 
@@ -12,10 +12,11 @@ const TemplateLibrary = () => {
   const { saveContent } = useContent();
 
   const categories = ['All', 'Blog', 'E-commerce', 'Social'];
+  const templatesWithUsage = getTemplatesWithUsage();
 
   const filteredTemplates = selectedCategory === 'All'
-    ? templates
-    : templates.filter(template => template.category === selectedCategory);
+    ? templatesWithUsage
+    : templatesWithUsage.filter(template => template.category === selectedCategory);
 
   const handleTemplateSelect = (template) => {
     setSelectedTemplate(template);
