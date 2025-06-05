@@ -110,3 +110,74 @@
   text-align: center;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .export-modal {
+    width: 95%;
+    margin: 20px;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .content-preview {
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+
+  .export-btn {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .export-modal {
+    width: 95%;
+    margin: 10px;
+  }
+
+  .modal-header {
+    padding: 15px;
+  }
+
+  .modal-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .close-btn {
+    font-size: 1.3rem;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+
+  .content-preview {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .content-preview h4 {
+    font-size: 1.1rem;
+  }
+
+  .export-options h4 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .export-btn {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}
