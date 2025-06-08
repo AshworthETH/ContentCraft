@@ -13,6 +13,10 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+.template-card:active {
+  transform: translateY(0);
+}
+
 .template-header {
   display: flex;
   justify-content: space-between;

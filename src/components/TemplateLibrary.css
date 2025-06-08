@@ -43,6 +43,8 @@
 .filter-btn.active {
   background: #667eea;
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
 }
 
 .templates-grid {
